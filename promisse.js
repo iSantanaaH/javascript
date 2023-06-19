@@ -1,6 +1,6 @@
-const functionPromise = () => {
+const connectToDatabase = () => {
     return new Promise((resolve, reject) => {
-        const erro = true;
+        const erro = false;
 
         if(erro){
             reject(`Erro ao conectar ${erro}`)
@@ -10,8 +10,13 @@ const functionPromise = () => {
     })
 };
 
-functionPromise().then((res) => {
-    console.log(res);
-}).catch((rej) => {
-    console.log(rej);
-})
+(async () => {
+    try {
+        const res = await connectToDatabase();
+        console.log(res);
+    } catch(error) {
+        console.log(error);
+    };
+})().catch((error) => {
+    console.log(`Erro não capturado: ${error}`);
+});
